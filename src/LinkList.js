@@ -4,6 +4,14 @@ import {graphql} from 'react-apollo'
 import gql from 'graphql-tag'
 
 class LinkList extends Component {
+    constructor() {
+        super()
+
+        this.state = {
+            user: 1
+        }
+    }
+
     render () {
         if (this.props.feedQuery && this.props.feedQuery.loading) {
             return <div>Loading</div>
@@ -13,22 +21,22 @@ class LinkList extends Component {
             return <div>Error</div>
         }
 
-        const linksToRender = this.props.feedQuery.feed
+        const linksToRender = this.props.feedQuery.sales
         return (
             <div>
-                {linksToRender.map(link => <Link key={link.id} link={link.id} link={link}/>)}
+                {linksToRender.map(link => <Link key={link.id} link={link}/>)}
             </div>
         )
     }
 }
 
 const FEED_QUERY = gql`
-    query FeedQuery {
-        feed {
+    query FeedQuery ($userId: Int!) {
+        sales (userId: $userId){
                 id
-                url
-                description
+                name
+                desc
         }
     }`
 
-export default graphql(FEED_QUERY, {name: 'feedQuery'})(LinkList)
+export default graphql(FEED_QUERY, {name: 'feedQuery', options: {variables: {userId: 1}}})(LinkList)

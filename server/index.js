@@ -6,7 +6,8 @@ const { GraphQLServer } = require('graphql-yoga')
 const resolvers = {
     Query: {
         info: () => `This is the API of a Hackernews Clone`,
-        feed: () => console.log(axios.get('https://swapi.co/api/people').then(res => res)),
+        sales: (some, args, any) => console.log(some, args, any),
+        // server.db().sale.find(),
         users: () => server.db().users.find()
     },
     Mutation: {
@@ -21,8 +22,11 @@ const resolvers = {
             return link
         }
     },
-    Link: {
-        name: (root) => console.log(root)
+    Sale: {
+        id: (root) => root.id,
+        name: (root) => root.sale_name,
+        desc: (root) => root.sale_desc,
+        userId: (root) => root.sale_user
     },
     User: {
         id: (root) => root.id,
