@@ -6,8 +6,7 @@ const { GraphQLServer } = require('graphql-yoga')
 const resolvers = {
     Query: {
         info: () => `This is the API of a Hackernews Clone`,
-        sales: () => server.db().sale.find(),
-        // console.log(some, args, any),
+        sales: (root, args) => server.db().sale.find(),
         users: () => server.db().users.find()
     },
     Mutation: {
@@ -26,7 +25,7 @@ const resolvers = {
         id: (root) => root.id,
         name: (root) => root.sale_name,
         desc: (root) => root.sale_desc,
-        user: (root) => [server.db().users.findOne({id: root.userID})]
+        user: (root) => [server.db().users.findOne({id: root.user_id})]
     },
     User: {
         id: (root) => root.id,

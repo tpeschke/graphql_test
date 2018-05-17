@@ -1,6 +1,6 @@
 type Query {
   info: String!
-  sales: [Sale!]!
+  sales(userID: ID!): [Sale!]!
   users: [User!]!
 }
 

@@ -43,4 +43,4 @@ const FEED_QUERY = gql`
         }
     }`
 
-export default graphql(FEED_QUERY, {name: 'feedQuery', options: {$userId: 1}})(LinkList)
+export default graphql(FEED_QUERY, {name: 'feedQuery', variables: {$userId: 1}})(LinkList)
