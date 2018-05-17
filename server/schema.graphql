@@ -12,7 +12,7 @@ type Sale {
     id: ID!
     name: String!
     desc: String!
-    userId: Int!
+    user: [User!]!
 }
 
 type User {

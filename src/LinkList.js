@@ -36,7 +36,11 @@ const FEED_QUERY = gql`
                 id
                 name
                 desc
+                user {
+                    id
+                    name
+                }
         }
     }`
 
-export default graphql(FEED_QUERY, {name: 'feedQuery', options: {variables: {userId: 1}}})(LinkList)
+export default graphql(FEED_QUERY, {name: 'feedQuery', options: {$userId: 1}})(LinkList)
