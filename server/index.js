@@ -1,7 +1,6 @@
 const { GraphQLServer } = require('graphql-yoga')
     , { string } = require('./superSecret.js')
     , massive = require('massive')
-    , axios = require('axios')
 
 const resolvers = {
     Query: {
